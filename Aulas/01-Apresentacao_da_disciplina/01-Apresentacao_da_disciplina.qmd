@@ -1,0 +1,298 @@
+---
+title: "Apresentação da Disciplina"
+subtitle: "ESTAT0011 -- Estatística Aplicada"
+author:
+  name: | # indica que o campo name terá múltiplas linhas
+    Prof. Dr. Sadraque E. F. Lucena<br>
+    <span style="font-size:.8em;">sadraquelucena@academico.ufs.br</span>
+  
+format:
+  revealjs:
+    theme: meutema.scss
+    width: 1024
+    height: 768
+    margin: 0.1         # margem em torno do conteúdo
+    min-scale: 0.2       # escala mínima permitida
+    max-scale: 2.0       # escala máxima permitida
+    slide-number: true
+    code-line-numbers: false # sem numero das linhas nos code chunks
+    subtitle-style: "font-size: 2em; font-weight: bold;"  # Aqui é onde aumentamos o subtítulo
+    logo: imagens/ufs_horizontal_positiva.png
+    transition: fade
+    transition-speed: fast
+    scss: meutema.scss
+
+lang: pt-BR
+---
+
+##
+
+- Material da disciplina: <http://tiny.cc/EstatAplicada>
+- Grupo no WhatsApp: <http://tiny.cc/EstatAplicadaWpp>
+
+
+![](imagens/WhatsApp.jpeg){fig-align="center"}
+
+
+
+## Informações da disciplina
+
+- **Componente curricular:** ESTAT0011 -- Estatística Aplicada
+- **Vagas Reservadas:** Sistemas de Informação
+- **Carga horária:** 60 horas (4 créditos)
+- **Horário:**
+  - Segundas -- 20h45 às 22h15
+  - Quartas -- 20h45 às 22h15
+- **Docente:** Prof. Dr. Sadraque E. F. Lucena
+
+
+## Objetivos
+
+- Proporcionar experiências de aprendizagem que permitam ao estudante familiarizar-se com conhecimentos estatísticos fundamentais para
+
+    - Análise;
+    - Interpretação;
+    - solução de problemas cotidianos e aplicados.
+
+
+## Ementa
+
+- Introdução. Regras elementares de probabilidade.
+- Distribuição binominal, Poisson e normal.
+- População e amostras.
+- Testes de bondade de ajustamento.
+- Uso de transformações.
+- Distribuições de certas estatísticas amostrais.
+- Noções de testes e hipóteses.
+- Noções de delineamento experimental.
+- Experimentos com um e dois fatores.
+- Regressão e correlação.
+
+## Conteúdo programático
+
+1. Estatística Descritiva
+
+    1.1. As fases do trabalho estatístico;
+    
+    1.2. Classificação dos dados;
+    
+    1.3. Séries estatísticas e sua representação tabular e gráfica;
+    
+    1.4. Distribuição de frequências simples e em classe e sua representação gráfica;
+    
+    1.5. Medidas de Posição: Média, Mediana e Moda;
+    
+    1.6. Medidas de Dispersão: Variância, desvio-padrão, coeficiente de variação.
+
+
+
+
+## Conteúdo programático
+
+2. Probabilidade
+
+    2.1. Noções de conjuntos;
+    
+    2.2. Experimento aleatório, espaço amostral e eventos;
+    
+    2.3. Eventos independentes;
+    
+    2.4. Probabilidade condicional e teorema de bayes.
+    
+    2.5. Variáveis aleatórias;
+    
+    2.6. Esperança matemática, variância e desvio-padrão;
+    
+    2.7. Distribuições discretas: Bernoulli, Binomial, Geométrica e Poisson;
+    
+    2.8. Distribuições contínuas: Uniforme, Exponencial e Normal.
+
+
+
+
+## Conteúdo programático
+
+3. Inferência
+
+    3.1. Noções de Amostragem;
+    
+    3.2. Conceitos iniciais de inferência;
+    
+    3.3. Distribuição da média e da proporção;
+
+    3.4. Intervalo de confiança para média e proporção;
+
+    3.5. Testes de hipóteses para média e proporção.
+
+
+
+
+## Conteúdo programático
+
+4. Correlação e Regressão Linear.
+
+    4.1. Tipos de correlação;
+    
+    4.2. Correlação Linear de Pearson;
+    
+    4.3. Regressão Linear Simples;
+    
+    4.4. Estimativa de parâmetros e interpretação.
+
+
+
+
+## Metodologia
+
+- 2 encontros semanais, com 90 minutos de aula presencial cada
+- 30 minutos de atividades extraclasse (hora-trabalho) para cada aula, indicadas pelo docente
+
+
+
+
+## Datas Importantes
+<br>
+
+### Avaliações
+
+- **Avaliação 1:** 04/06/2025 (quarta)
+- **Avaliação 2:** 28/07/2025 (segunda)
+- **Avaliação 3:** 25/08/2025 (segunda)
+- **Avaliação Repositiva:** 01/09/2025 (segunda)
+
+<br>
+
+### Não haverá aula
+
+- **23/06/2025:** Véspera de Sâo João (recesso acadêmico)
+
+
+
+
+# Conceitos Iniciais
+
+
+
+
+## População vs. Amostra
+<br>
+
+### População
+
+- Consiste de todas as unidades de interesse.
+- Quando os dados coletados são da população, chamamos o procedimento de coleta de **censo**.
+- Qualquer característica numérica de uma população é chamada de **parâmtetro**.
+
+
+
+
+## População vs. Amostra
+<br>
+
+### Amostra
+
+- Qualquer subconjunto da população.
+- Usada para fazer inferências sobre a população.
+- Quando os dados coletados são de uma amostra, o procedimento de coleta é chamado de **amostragem**.
+- Qualquer função aplicada sobre a amostra é chamada **estatística**.
+
+
+
+
+## Tipos de Variáveis
+<br>
+
+### Qualitativas
+
+- São variáveis que consistem em atributos, classificações ou registros não numéricos.
+- **Exemplos:** Classe social, tipo de sistema operacional, nível de satisfação, método de autenticação.
+
+
+
+
+## Tipos de Variáveis
+<br>
+
+### Quantitativas
+
+- São variáveis que constituem em medidas ou contagens numéricas.
+- **Exemplos:** Peso, tempo de resposta do sistema, número de transações diárias, percentual de uso de CPU. 
+
+
+## Variáveis Qualitativas
+<br>
+
+### Nominais
+
+- Os dados que representam um conjunto de possíveis categorias e não possuem ordem.
+- **Exemplos:** Gênero, bairro, curso, etc.
+- Um caso especial de são os dados **binários**, que possuem apenas duas categorias de valores (0/1, verdadeiro/falso).
+
+
+
+
+## Variáveis Qualitativas
+<br>
+
+### Ordinais
+
+- Dado categórico que tem uma ordem explícita.
+- **Exemplos:** Escolaridade (analfabeto < ensino fundamental < ensino
+médio < ensino superior), escala de qualidade (péssimo < ruim < regular < bom <
+ótimo).
+
+
+
+
+## Variáveis Quantitativas
+<br>
+
+### Discretas
+
+- Podem assumir apenas valores inteiros, como contagens.
+- **Exemplos:** Número de filhos, quantidade de falhas em um *software*, número de transações bloqueadas.
+
+
+### Contínuas
+
+- Podem assumir qualquer valor em um intervalo.
+- **Exemplos:** Altura, tempo de resposta de uma API, largura de banda consumida.
+
+
+
+
+## Exemplo
+
+Classifique as variáveis abaixo:
+
+1. Tipo de protocolo de segurança usado (ex: TLS 1.2, TLS 1.3)
+
+2. Número de tentativas de login falhas por hora (ex: 8 tentativas)
+
+3. Temperatura do servidor em °C (ex: 62.3°C)
+
+4. Classificação de risco de vulnerabilidade (ex: Baixo < Médio < Alto)
+
+5. Quantidade de núcleos do processador (ex: 8 núcleos)
+
+6. Satisfação com tempo de resposta do suporte (ex: 1 a 5 estrelas)
+
+
+
+
+## Exemplo
+
+Classifique as variáveis abaixo:
+
+7. Latência média da rede em milissegundos (ex: 24.7 ms)
+
+8. Fabricante do hardware (ex: Dell, HP, Lenovo)
+
+9. Número de patches de segurança aplicados (ex: 15 patches)
+
+10. Nível de adoção de IA na empresa (ex: Inicial < Intermediário < Avançado)
+
+
+
+
+# Fim

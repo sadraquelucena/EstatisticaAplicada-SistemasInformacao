@@ -1,0 +1,754 @@
+---
+title: "Visualização de Dados"
+subtitle: "ESTAT0011 -- Estatística Aplicada"
+author:
+  name: | # indica que o campo name terá múltiplas linhas
+    Prof. Dr. Sadraque E. F. Lucena<br>
+    <span style="font-size:.8em;">sadraquelucena@academico.ufs.br</span>
+  
+format:
+  revealjs:
+    theme: meutema.scss
+    width: 1024
+    height: 768
+    margin: 0.1         # margem em torno do conteúdo
+    min-scale: 0.2       # escala mínima permitida
+    max-scale: 2.0       # escala máxima permitida
+    slide-number: true
+    code-line-numbers: false # sem numero das linhas nos code chunks
+    subtitle-style: "font-size: 2em; font-weight: bold;"  # Aqui é onde aumentamos o subtítulo
+    logo: imagens/ufs_horizontal_positiva.png
+    transition: fade
+    transition-speed: fast
+    scss: meutema.scss
+
+lang: pt-BR
+---
+
+## Visualização de Dados
+
+- A representação gráfica de dados tem a vantagem de trazer diversas informações relevants sobre o comportamento dos dados.
+
+- Os gráficos são utilizados para diversos fins:
+
+    - Buscar padrões e relações;
+    
+    - confirmar (ou não) certas expectativas que se tinha sobre os dados;
+    
+    - descobrir novos fenômenos;
+    
+    - confirmar (ou não) suposições feitas sobre os procedimentos estatísticos usados; e
+		
+    - apresentar resultados de modo mais rápido e fácil.
+
+
+
+
+## Visualização de Dados
+
+- Ao construir qualquer tipo de gráfico, é importante garantir que:
+
+    - o gráfico receba um título adequado;
+		
+    - a legenda dever ser concisa e objetiva;
+		
+    - cada um dos eixos seja rotulado
+		
+    - uma escala sensata utilizada.
+
+
+
+
+## Visualização de Dados Categóricos
+
+- Quando os dados são categóricos, o objetivo da visualização é representar a magnitude de valores quantitativos associados a categorias.
+
+    - **Exemplos:** vendas de carros por marca, população por cidade, idade de atletas por esporte.
+
+- Nesses casos, a visualização padrão é o gráfico de barras, com variações como barras simples, agrupadas ou empilhadas.
+
+
+
+
+## Visualização de Contagens
+
+### Gráfico de Barras
+
+Considere o total de vendas de ingressos dos filmes mais populares em 2024 no Brasil.
+
+| Posição | Título                         | Bilheteria     |
+|:-------:|:-------------------------------|---------------:|
+| 1       |	Divertida Mente 2	             | R$ 443.789.000 |
+| 2	      | Moana 2ª                       | R$ 177.353.562 |
+| 3	      | Deadpool & Wolverine	         | R$ 156.920.000 |
+| 4	      | Meu Malvado Favorito 4         | R$ 151.710.000 |
+| 5	      | Mufasa: O Rei Leão             | R$ 125.414.354 |
+| 6       | Ainda Estou Aqui               | R$ 117.630.000 |
+Fonte: Wikipedia.
+
+
+
+## Visualização de Contagens
+
+### Gráfico de Barras
+
+- Esse tipo de dado é comumente visualizado com barras verticais.
+- Para cada filme, desenhamos uma barra que começa no zero e se estende até o valor correspondente à bilheteria daquele ano.
+
+```{r}
+#| echo: false
+#| eval: true
+#| warning: false
+#| fig-align: center
+#| out-width: 100% # Garante que usará a largura disponível
+
+library(tidyverse)
+
+bd <- tibble(
+  Filme = c(
+    "Divertida\n Mente 2",
+    "Moana 2",
+    "Deadpool &\n Wolverine",
+    "Meu Malvado\n Favorito 4",
+    "Mufasa:\n O Rei Leão",
+    "Ainda Estou\n Aqui"
+  ),
+  Bilheteria = c(
+    443789000,
+    177353562,
+    156920000,
+    151710000,
+    125414354,
+    117630000
+  )
+)
+ggplot(bd, aes(x = reorder(Filme, -Bilheteria), y = Bilheteria)) +
+  geom_bar(stat = "identity", fill = "#1f77b4", width = 0.7) +
+  scale_y_continuous(labels = function(x) format(x/1e6)) +
+  labs(title = NULL,
+       x = NULL,
+       y = "Bilheteria (em milhões de R$)") +
+  theme_minimal() +
+  theme(
+    axis.title = element_text(color = "black", size = 16),
+    axis.text = element_text(color = "black", size = 16),
+    legend.text = element_text(color = "black", size = 16),
+    panel.grid.major.y = element_line(color = "gray80", linewidth = 0.5),  # Linhas principais do eixo Y
+    panel.grid.minor.y = element_blank(),  # Remove linhas secundárias
+    panel.grid.major.x = element_blank(),  # Remove linhas verticais
+    panel.grid.minor.x = element_blank()
+  )
+```
+Fonte: Wikipedia.
+
+
+
+
+## Visualização de Contagens
+
+### Gráfico de Barras
+
+- Quando os rótulos de cada barra ocupam muito espaço horizontal, você pode rotacionar o gráfico.
+
+```{r}
+#| echo: false
+#| eval: true
+#| warning: false
+#| fig-align: center
+#| out-width: 100% # Garante que usará a largura disponível
+
+library(tidyverse)
+
+bd <- tibble(
+  Filme = c(
+    "Divertida Mente 2",
+    "Moana 2",
+    "Deadpool & Wolverine",
+    "Meu Malvado Favorito 4",
+    "Mufasa: O Rei Leão",
+    "Ainda Estou Aqui"
+  ),
+  Bilheteria = c(
+    443789000,
+    177353562,
+    156920000,
+    151710000,
+    125414354,
+    117630000
+  )
+)
+ggplot(bd, aes(y = reorder(Filme, Bilheteria), x = Bilheteria)) +
+  geom_bar(stat = "identity", fill = "#1f77b4", width = 0.7) +
+  scale_x_continuous(labels = function(x) format(x/1e6)) +
+  labs(title = NULL,
+       x = "Bilheteria (em milhões de R$)",
+       y = NULL) +
+  theme_minimal() +
+  theme(
+    axis.title = element_text(color = "black", size = 16),
+    axis.text = element_text(color = "black", size = 16),
+    legend.text = element_text(color = "black", size = 16),
+    panel.grid.major.x = element_line(color = "gray80", linewidth = 0.5),  # Linhas principais do eixo Y
+    panel.grid.minor.x = element_blank(),  # Remove linhas secundárias
+    panel.grid.major.y = element_blank(),  # Remove linhas verticais
+    panel.grid.minor.y = element_blank()
+  )
+```
+Fonte: Wikipedia.
+
+
+
+
+## Visualização de Contagens
+
+### Gráfico de Barras
+
+- As barras do gráfico de barras devem estar sempre em ordem decrescente.
+
+    - **Exceção:** variável cujos valores possuem uma ordem natural (variável ordinal).
+
+```{r}
+#| echo: false
+#| eval: true
+#| warning: false
+#| fig-align: center
+#| out-width: 100% # Garante que usará a largura disponível
+
+library(tidyverse)
+
+bd <- tibble(
+  Idade = c(
+    "14 a 17",
+    "18 a 24",
+    "25 a 39",
+    "40 a 59",
+    "60 ou mais"
+  ),
+  Renda = c(
+    991,
+    1873,
+    3301,
+    3765,
+    3697
+  )
+)
+ggplot(bd, aes(y = Renda, x = Idade)) +
+  geom_bar(stat = "identity", fill = "#1f77b4", width = .9) +
+  labs(title = NULL,
+       x = "Idade (anos)",
+       y = "Renda média (R$)") +
+  theme_minimal() +
+  theme(
+    axis.title = element_text(color = "black", size = 16),
+    axis.text = element_text(color = "black", size = 16),
+    legend.text = element_text(color = "black", size = 16),
+    panel.grid.major.y = element_line(color = "gray80", linewidth = 0.5),  # Linhas principais do eixo Y
+    panel.grid.minor.y = element_blank(),  # Remove linhas secundárias
+    panel.grid.major.x = element_blank(),  # Remove linhas verticais
+    panel.grid.minor.x = element_blank()
+  )
+```
+Fonte: IBGE.
+
+
+
+
+## Visualização de Contagens
+
+### Barras Agrupadas
+
+- A visualização abaixo fornece comparação entre renda média de cada região na mesma faixa de idade.
+
+```{r}
+#| echo: false
+#| eval: true
+#| warning: false
+#| fig-align: center
+#| out-width: 100% # Garante que usará a largura disponível
+
+library(tidyverse)
+
+bd <- tibble(
+  Idade = c(
+    rep("14 a 17", 5),
+    rep("18 a 24", 5),
+    rep("25 a 39", 5),
+    rep("40 a 59", 5),
+    rep("60 ou mais", 5)
+  ),
+  Regiao = rep(c("Norte", "Nordeste", "Sudeste", "Sul", "Centro-Oeste"), 5),
+  Renda = c(
+    815, 654, 1067, 1140, 1122,
+    1597, 1372, 2025, 2238, 2021,
+    2518, 2227, 3729, 3776, 3806,
+    2912, 2587, 4204, 4216, 4342,
+    3240, 2835, 3996, 3938, 4035
+  )
+)
+bd$Regiao <- factor(bd$Regiao, 
+                    levels = c("Sul", "Sudeste", "Centro-Oeste", "Norte", "Nordeste"))
+cores_regiao <- c(
+  "Sul" = "#002060",        # Azul muito escuro (quase marinho)
+  "Sudeste" = "#004080",    # Azul escuro
+  "Centro-Oeste" = "#0060A0", # Azul médio
+  "Norte" = "#60A0D0",      # Azul claro
+  "Nordeste" = "#80C0D0"     # Azul muito claro
+)
+ggplot(bd, aes(x = Idade, y = Renda, fill = Regiao)) +
+  geom_bar(stat = "identity",position = position_dodge()) +
+   scale_fill_manual(values = cores_regiao) +
+  labs(title = NULL,
+       x = "Idade (anos)",
+       y = "Renda média (R$)") +
+  theme_minimal() +
+  theme(
+    axis.title = element_text(color = "black", size = 16),
+    axis.text = element_text(color = "black", size = 16),
+    legend.text = element_text(color = "black", size = 16),
+    panel.grid.major.y = element_line(color = "gray80", linewidth = 0.5),  # Linhas principais do eixo Y
+    panel.grid.minor.y = element_blank(),  # Remove linhas secundárias
+    panel.grid.major.x = element_blank(),  # Remove linhas verticais
+    panel.grid.minor.x = element_blank()
+  )
+```
+Fonte: IBGE.
+
+
+
+
+## Visualização de Contagens
+
+### Barras Agrupadas
+
+- Se quisermos comparar a distribuição da renda média ao longo das faixas etárias para cada região, o gráfico abaixo é melhor.
+
+```{r}
+#| echo: false
+#| eval: true
+#| warning: false
+#| fig-align: center
+#| out-width: 100% # Garante que usará a largura disponível
+
+library(tidyverse)
+
+bd <- tibble(
+  Idade = c(
+    rep("14 a 17", 5),
+    rep("18 a 24", 5),
+    rep("25 a 39", 5),
+    rep("40 a 59", 5),
+    rep("60 ou mais", 5)
+  ),
+  Regiao = rep(c("Norte", "Nordeste", "Sudeste", "Sul", "Centro-Oeste"), 5),
+  Renda = c(
+    815, 654, 1067, 1140, 1122,
+    1597, 1372, 2025, 2238, 2021,
+    2518, 2227, 3729, 3776, 3806,
+    2912, 2587, 4204, 4216, 4342,
+    3240, 2835, 3996, 3938, 4035
+  )
+)
+bd$Regiao <- factor(bd$Regiao, 
+                    levels = c("Sul", "Sudeste", "Centro-Oeste", "Norte", "Nordeste"))
+cores_regiao <- c(
+  "14 a 17" = "#002060",        # Azul muito escuro (quase marinho)
+  "18 a 24" = "#004080",    # Azul escuro
+  "25 a 39" = "#0060A0", # Azul médio
+  "40 a 59" = "#60A0D0",      # Azul claro
+  "60 ou mais" = "#80C0D0"     # Azul muito claro
+)
+ggplot(bd, aes(x = Regiao, y = Renda, fill = Idade)) +
+  geom_bar(stat = "identity",position = position_dodge()) +
+   scale_fill_manual(values = cores_regiao) +
+  labs(title = NULL,
+       x = "Região",
+       y = "Renda média (R$)") +
+  theme_minimal() +
+  theme(
+    axis.title = element_text(color = "black", size = 16),
+    axis.text = element_text(color = "black", size = 16),
+    legend.text = element_text(color = "black", size = 16),
+    panel.grid.major.y = element_line(color = "gray80", linewidth = 0.5),  # Linhas principais do eixo Y
+    panel.grid.minor.y = element_blank(),  # Remove linhas secundárias
+    panel.grid.major.x = element_blank(),  # Remove linhas verticais
+    panel.grid.minor.x = element_blank()
+  )
+```
+Fonte: IBGE.
+
+
+
+
+## Visualização de Contagens
+
+### Barras Empilhadas
+
+- Cada segmento corresponde a uma subcategoria, e a altura total da barra representa a soma de todas as subcategorias.
+
+```{r}
+#| echo: false
+#| eval: true
+#| warning: false
+#| fig-align: center
+#| out-width: 100% # Garante que usará a largura disponível
+
+library(tidyverse)
+library(explore)
+titanic <- use_data_titanic(count = TRUE)
+titanic_sumarizado <- titanic %>%
+  group_by(Class, Survived) %>%
+  summarise(n = sum(n, na.rm = TRUE)) %>%
+  ungroup()
+
+titanic_pt <- titanic_sumarizado %>%
+  rename(
+    Classe = Class,
+    Sobrevivente = Survived,
+    n = n
+  ) %>%
+  mutate(
+    Classe = factor(Classe, levels = c("1st", "2nd", "3rd", "Crew"),
+                    labels = c("Primeira Classe", "Segunda Classe", "Terceira Classe", "Tripulação")),
+    Sobrevivente = factor(Sobrevivente, levels = c("No", "Yes"),
+                          labels = c("Não", "Sim"))
+  )
+
+ggplot(titanic_pt, aes(x = Classe, y = n, fill = Sobrevivente)) +
+  geom_bar(stat = "identity", position = "stack") + # Barras empilhadas
+  geom_text(aes(label = n), # Rótulos para o número dentro de cada segmento
+            position = position_stack(vjust = 0.5), # Centraliza o texto no segmento
+            color = "black", # Cor do texto
+            size = 5) + # Tamanho do texto
+  #scale_fill_brewer(palette = "Blues") + # Paleta de cores GnBu
+  labs(
+    title = NULL,
+    x = "Classe",
+    y = "Número de Pessoas",
+    fill = "Sobrevivente"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.title = element_text(color = "black", size = 16),
+    axis.text = element_text(color = "black", size = 16),
+    legend.title = element_text(color = "black", size = 16),
+    legend.text = element_text(color = "black", size = 16),
+    panel.grid.major.y = element_line(color = "gray80", linewidth = 0.5),
+    panel.grid.minor.y = element_blank(),
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank()
+  )
+
+```
+Dados de passagerios e tripulantes do Titanic.
+
+
+
+
+## Visualização de Proporções
+
+- Usado para mostrar como um todo se divide em partes que representam proporções individuais.
+Exemplos:
+
+    - Proporção de gêneros em um grupo.
+    
+    - Percentual de votos para partidos.
+    
+    - Participação de mercado de empresas.
+
+- **Desafio:** Pode ser complexo quando há muitas partes ou quando as proporções mudam ao longo do tempo.
+
+- **Regra de Ouro:** Sempre escolha a visualização que melhor se adapta ao seu conjunto de dados e destaca as características que você quer mostrar.
+
+
+
+
+## Visualização de Proporções
+
+### Gráfico de Setores (Pizza)
+
+- Divide um círculo em fatias, onde a área de cada fatia é proporcional à fração do total.
+
+- Quando usar:
+
+    - Para enfatizar frações simples (ex: metade, um terço).
+    
+    - Com pequenos conjuntos de dados (poucas categorias).
+    
+    - São visualmente claros para mostrar a relação das partes com o todo em um cenário único.
+
+- Muito usado em apresentações, mas criticado por cientistas de dados.
+
+    - Dificulta a comparação precisa entre categorias (especialmente com muitas partes ou valores similares).
+
+
+## Visualização de Proporções
+
+### Gráfico de Setores (Pizza)
+
+- Composição partidária do parlamento alemão entre 1976 e 1980.
+
+- Note que o gráfico de barras pode ser usado.
+
+::: {.columns}
+::: {.column width="33%"}
+![](imagens/bundestag-pie-1.png)
+:::
+::: {.column width="33%"}
+![](imagens/bundestag-stacked-bars-1.png)
+:::
+::: {.column width="33%"}
+![](imagens/bundestag-bars-side-by-side-1.png)
+:::
+:::
+
+
+
+
+## Visualização de Distribuições
+
+### Histogramas
+
+- Quando os dados são quantitativos, o histograma é uma ótima opção para compreender seu comportamento.
+
+- Vamos considerar as idades dos passageiros do Titanic.
+
+::: {.columns}
+::: {.column width="33%"}
+| Idade | Frequência |
+|:------|-----------:|
+| 0–5	| 36|
+|6–10	|19|
+|11–15|	18|
+|16–20|	99|
+|21–25|	139|
+|26–30|	121|
+:::
+::: {.column width="33%"}
+| Idade | Frequência |
+|:------|-----------:|
+|31–35|	76|
+|36–40|	74|
+|41–45|	54|
+|46–50|	50|
+|51–55|	26|
+|56–60|	22|
+:::
+::: {.column width="33%"}
+| Idade | Frequência |
+|:------|-----------:|
+|61–65|	16|
+|66–70	|3|
+|71–75	|3|
+
+:::
+:::
+
+
+
+
+## Visualização de Distribuições
+
+### Histogramas
+
+- Podemos visualizar os dados por meio de um histograma.
+
+![](imagens/titanic-ages-hist1-1.png)
+
+
+
+
+## Visualização de Distribuições
+
+### Histogramas
+
+- A aparência visual exata de um histograma depende do número de intervalos usados para sua construção.
+
+    - **Largura do intervalo muito pequena:** O histograma se torna excessivamente "pontudo" e visualmente poluído, e as tendências principais nos dados podem ficar escondidas.
+
+    - **Largura de bin muito grande:** Características menores na distribuição dos dados, como a queda em torno dos 10 anos de idade, podem desaparecer.
+
+
+
+
+## Visualização de Distribuições
+
+### Histogramas
+
+![](imagens/titanic-ages-hist-grid-1.png)
+
+
+
+
+## Visualização de Distribuições
+
+### Histogramas
+
+- Uma regra útil para determinar o número de intervalos é usar a **Rega de Sturges**. Segundo ela, o número de intervalos ($k$) deve ser:
+$$
+ k = 1 + \log_2(n)
+$$
+ou
+$$
+  k = 1 + 3.322\times\log_{10}(n),
+$$
+em que $n$ é o tmanho da amostra.
+
+
+
+
+## Visualização de Distribuições
+
+### Gráfico de densidade
+
+- Outra forma de visualizar a distribuição de dados quantitativos é usando um gráfico de densidade.
+
+- A curva de represetnação dos dados é obtida via estimação de densidade kernel.
+
+![](imagens/titanic-ages-dens-grid-1.png)
+
+
+
+
+## Visualização de Distribuições
+
+### Gráfico de densidade
+
+- O gráfico de densidade também pode ser usado para visualizar o comportamento de vários grupos, geralmente ao mesmo tempo.
+
+![](imagens/temp-ridgeline-1.png){width=60%}
+
+Temperatura diária média ao longo dos meses em Lincoln, Nebraska.
+
+
+
+
+## Visualização de Distribuições
+
+### Boxplot
+
+- Boxplot, ou diagrama de caixa, é um gráfico que divide os dados em quartis
+
+- Ele exibe cinco estatísticas principais:
+
+![](imagens/boxplot-schematic-1.png)
+
+
+
+
+## Visualização de Distribuições
+
+### Boxplot
+
+- O boxplot é muito útil para comparar a distribuição de grupos diferentes.
+
+![](imagens/lincoln-temp-boxplots-1.png){width=60%}
+
+Temperatura diária média ao longo dos meses em Lincoln, Nebraska.
+
+
+
+
+## Visualização de Distribuições
+
+### Gráfico de Violino
+
+- Combina um boxplot com uma estimativa de densidade de kernel.
+- Quanto mais largo o violino em um determinado ponto, maior a concentração de dados naquele valor.
+
+![](imagens/violin-schematic-1.png)
+
+
+
+
+## Visualização de Distribuições
+
+### Gráfico de Violino
+
+- Ele também é útil para visualizar o comportamento de uma variável e diferentes grupos.
+
+![](imagens/lincoln-temp-violins-1.png){width=60%}
+
+Temperatura diária média ao longo dos meses em Lincoln, Nebraska.
+
+
+
+## Visualização de Associações
+
+### Gráfico de dispersão
+
+- Serve para visualização de duas variáveis ao mesmo tempo.
+- Auxilia a compreensão da relação entre variáveis.
+
+![](imagens/blue-jays-scatter-1.png){width=50%}
+
+Tamanho da cabeça de uma espécie de pássaro e sua massa corporal.
+
+
+
+
+## Visualização de Associações
+
+### Gráfico de dispersão
+
+- É possível adicionar uma terceira variável para ajudar numa melhor compreensão dos dados.
+
+![](imagens/blue-jays-scatter-sex-1.png){width=70%}
+
+Tamanho da cabeça de uma espécie de pássaro e sua massa corporal segundo sexo.
+
+
+## Visualização de Dados no Tempo
+
+### Gráfico de Linha para Série temporal
+
+- Mais comum e eficaz para mostrar como uma ou mais variáveis numéricas evoluem ao longo do tempo.
+
+
+::: {.columns}
+::: {.column width="49%"}
+![](imagens/biorxiv-dots-line-1.png)
+:::
+::: {.column width="49%"}
+![](imagens/biorxiv-line-1.png)
+:::
+Submissões mensais ao servidor de pré-publicações bioRxiv.
+:::
+
+
+
+
+## Visualização de Dados no Tempo
+
+### Gráfico de Linha para Série temporal
+
+Auxilida na visualização de:
+
+- **Tendências:** Permitem visualizar facilmente a tendência geral dos dados ao longo do tempo (crescimento, declínio, estabilidade).
+- **Padrões:** Ajudam a identificar padrões recorrentes (sazonalidade, ciclos).
+- **Flutuações:** Mostram variações e ruídos nos dados.
+- **Pontos de Inflexão:** Destacam momentos de mudança significativa ou eventos importantes.
+- **Comparação:** Quando múltiplas séries temporais são plotadas no mesmo gráfico (com linhas diferentes ou cores diferentes), eles são excelentes para comparar o comportamento de diferentes variáveis ou grupos ao longo do mesmo período.
+
+
+
+
+## Visualização de Dados no Tempo
+
+### Visualização Múltipla
+
+- O gráfico de linha permite a visualização múltipla para facilitar comparações.
+
+![](imagens/bio-preprints-direct-label-1.png){width=60%}
+
+Submissões mensais a três servidores de pré-publicações cobrindo pesquisa biomédica.
+
+
+
+
+## Para saber mais
+
+![](imagens/cover.png)
+
+<https://clauswilke.com/dataviz/visualizing-trends.html>
+
+# Fim

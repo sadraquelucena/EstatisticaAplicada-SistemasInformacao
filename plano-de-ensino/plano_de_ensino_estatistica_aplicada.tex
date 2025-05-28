@@ -1,0 +1,161 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage{PlanoEnsinoDECAT}
+\usepackage[brazil]{babel}
+\usepackage{color}
+\usepackage[normalem]{ulem}
+\usepackage{enumitem}
+\usepackage{float}
+
+\usepackage[table]{xcolor}
+\usepackage{booktabs} % para linhas na tabela colorida
+
+\usepackage[
+top    = 2.50cm,
+bottom = 2.50cm,
+left   = 2.60cm,
+right  = 2.50cm]{geometry}
+
+\usepackage{caption}
+\captionsetup[table]{name=Quadro}
+
+\usepackage{palatino} % fonte
+\usepackage{setspace} % espaçamento
+
+
+\codigo{ESTAT0011}                      % codigo da disciplina
+\disciplina{ESTATÍSTICA APLICADA}  % nome da disciplina
+\docente{Sadraque E. F. Lucena}         % nome do(a) docente
+\cargahoraria{60 horas}                 % carga horaria da disciplina
+\creditos{4 cr\'editos}                 % quatidade de creditos da disciplina
+\horario{Segundas - 20h45 \`as 22h15} % horario 1
+\horarioo{Quartas - 20h45 \`as 22h15}   % horario 2
+\periodo{2025-1}                        % periodo letivo
+\qtdaval{3}                             % quantidade de avaliacoes Ex.: 2
+
+\begin{document}
+
+\cabecalho
+
+\begin{itemize}[label={},itemindent=-2em,leftmargin=2em]
+    \item {\bf Ementa:} Introdução. Regras elementares de probabilidade. Distribuição binominal, Poisson e normal. População e amostras. Testes de bondade de ajustamento. Uso de transformações. Distribuições de certas estatísticas amostrais. Noções de testes e hipóteses. Noções de delineamento experimental. Experimentos com um e dois fatores. Regressão e correlação.
+    
+    \item {\bf Objetivos:} Proporcionar experiências de aprendizagem que permitam ao estudante familiarizar-se com conhecimentos estatísticos fundamentais para a análise, interpretação e solução de problemas cotidianos e aplicados.
+    
+    \item {\bf Metodologia:} A disciplina será desenvolvida por meio de aulas teóricas expositivas, com uso de recursos visuais, resolução de exercícios em sala e realização de atividades extraclasse. O cronograma de aulas encontra-se no Quadro 1.
+    
+    \item {\bf Habilidades e Competências:} Ao final da disciplina, o estudante conhecerá os principais conceitos de estatística descritiva, terá noções básicas de probabilidade e inferência, e compreenderá os fundamentos de correlação e regressão linear simples. Estará, assim, apto a aplicar essas técnicas na resolução de problemas cotidianos e em contextos práticos.
+    
+    \item {\bf Avaliação:} Serão realizadas três avaliações ao longo do semestre, podendo consistir em provas, trabalhos ou outras atividades definidas pelo docente.
+\end{itemize}
+
+\noindent {\bf Conteúdo:}
+\begin{enumerate}
+	\singlespacing
+	\item Estatística Descritiva
+	\begin{enumerate}[label*=\arabic*.]
+		\item As fases do trabalho estatístico;
+		\item Classificação dos dados;
+		\item Séries estatísticas e sua representação tabular e gráfica;
+		\item Distribuição de frequências simples e em classe e sua representação gráfica;
+		\item Medidas de Posição: Média, Mediana e Moda;
+		\item Medidas de Dispersão: Variância, desvio-padrão, coeficiente de variação.
+	\end{enumerate}
+	\vspace{.3cm}
+	\item Probabilidade
+	\begin{enumerate}[label*=\arabic*.]
+		\item Noções de conjuntos;
+		\item Conceitos de probabilidade: Experimento aleatório, espaço amostral e eventos;
+		\item Eventos independentes;
+		\item Probabilidade condicional e teorema de Bayes.
+		\item Esperança matemática, variância e desvio-padrão;
+		\item Distribuições discretas: Bernoulli, Binomial, Geométrica e Poisson;
+		\item Distribuições contínuas: Uniforme, Exponencial e Normal.
+	\end{enumerate}
+	\item Inferência
+	\begin{enumerate}[label*=\arabic*.]
+		\item Noções de Amostragem;
+		\item Conceitos iniciais de inferência;
+		\item Distribuição da média e da proporção;
+		\item Intervalo de confiança para média e proporção;
+		\item Testes de hipóteses para média e proporção.
+	\end{enumerate}
+	\item Correlação e Regressão Linear.
+	\begin{enumerate}[label*=\arabic*.]
+		\item Tipos de correlação;
+		\item Correlação Linear de Pearson;
+		\item Regressão Linear Simples;
+		\item Intervalo de confiança para média e proporção;
+		\item Estimativa de parâmetros e interpretação.
+	\end{enumerate}
+\end{enumerate}
+
+\noindent {\bf Bibliografia:}\\
+
+\noindent {\it Básica:}
+\begin{itemize}
+     \item MAGALHÃES, Marcos Nascimento; LIMA, Antônio Carlos Pedroso de. Noções de probabilidade e estatística. 7. ed. atual. São Paulo, SP: EDUSP, 2010.
+     
+     \item MORETTIN, Luiz Gonzaga. Estatística básica: probabilidade e inferência. São Paulo: Pearson, 2010.
+     
+     \item MEYER, P. L.. Probabilidade. Aplicações à Estatística. Livros Técn. Científicos, 1972.
+     
+     \item ROSS, Sheldon M. Probabilidade: um curso moderno com aplicações. 8. ed. Porto Alegre, RS: Bookman, 2010.
+     
+     \item VIEIRA, Sonia. Estatística básica. São Paulo: Cengage Learning, 2012.
+     
+\end{itemize}
+
+\noindent {\it Complementar:}
+\begin{itemize}
+    \item ROSS, Sheldon M. Introduction to probability models. 8th. ed. United States of America: Academic Press, 2003.
+    
+    \item MAGALHÃES, Marcos Nascimento; Probabilidade e Variável Aleatória. 3. ed. São Paulo, SP: EDUSP, 2011.
+\end{itemize}
+
+\begin{table}[H]
+	\caption{Cronograma de aulas de Estatística Computacional para o período 2025-1.}
+	\rowcolors{1}{gray!20}{white}
+	\renewcommand{\arraystretch}{1.15}
+	\begin{tabular}{|c|c|c|p{10cm}|}
+		\toprule
+		\textbf{Data}	&	\textbf{Dia da semana}	&	\textbf{Aula}	&	\textbf{Assunto Previsto}	\\
+		\midrule
+		12/05/2025 & Segunda & 1 & Apresentação da disciplina \\
+		14/05/2025 & Quarta & 2 & Medidas de localização \\
+		19/05/2025 & Segunda & 3 & Medidas de variabilidade \\
+		21/05/2025 & Quarta & 4 & Gráficos \\
+		26/05/2025 & Segunda & 5 & Atividade \\
+		28/05/2025 & Quarta & 6 & Atividade \\
+		02/06/2025 & Segunda & 7 & Atividade \\
+		04/06/2025 & Quarta & 8 & \textbf{Avaliação 1} \\
+		09/06/2025 & Segunda & 9 & Probabilidade. Eventos e suas probabilidades. Regras de Probabilidade.\\
+		11/06/2025 & Quarta & 10 & Análise Combinatória (parte 1) \\
+		16/06/2025 & Segunda & 11 & Análise Combinatória (parte 2) \\
+		18/06/2025 & Quarta & 12 & Probabilidade Condicional e Independência. \\
+		23/06/2025 & Segunda & - & \textcolor{red}{Véspera de Sâo João (recesso acadêmico)} \\
+		25/06/2025 & Quarta & 13 & Exercícios. \\
+		30/06/2025 & Segunda & 14 & Variáveis Aleatórias Discretas. Valor Esperado e Variância. \\
+		02/07/2025 & Quarta & 15 & Distribuição de Bernoulli e Binomial. \\
+		07/07/2025 & Segunda & 16 & Distribuição Geométrica, Binomal Negativa e Poisson. \\
+		09/07/2025 & Quarta & 17 & Variáveis Aleatórias Contínuas.\\
+		14/07/2025 & Segunda & 18 & Distribuição Uniforme e Normal.\\
+		16/07/2025 & Quarta & 19 & Exercícios.\\
+		21/07/2025 & Segunda & 20 & Exercícios.\\
+		23/07/2025 & Quarta & 21 & Exercícios.\\
+		28/07/2025 & Segunda & 22 & \textbf{Avaliação 2}\\
+		30/07/2025 & Quarta & 23 & Intervalos de Confiança para a Média.\\
+		04/08/2025 & Segunda & 24 & Intervalos de Confiança para a Proporção.\\
+		06/08/2025 & Quarta & 25 & Teste de Hipóteses para a Média de uma Amostra.\\
+		11/08/2025 & Segunda & 26 & Teste de Hipóteses para a Proporção.\\
+		13/08/2025 & Quarta & 27 & Teste de Hipóteses para a Diferença de Médias.\\
+		18/08/2025 & Segunda & 28 & Exercícios.\\
+		20/08/2025 & Quarta & 29 & Exercícios.\\
+		25/08/2025 & Segunda & 30 & \textbf{Avaliação 3} \\
+		01/09/2025 & Segunda & - & \textbf{Avaliação Repositiva} \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\noindent {\bf Hora-trabalho:} Ao final de cada aula serão indicados exercícios para os alunos resolverem como forma de fixação do conteúdo exposto em sala de aula.
+
+\end{document}
